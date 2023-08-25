@@ -19,24 +19,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class UserController 
 {	
-		private OkHttpClient client;
+		private OkHttpClient client;	
 		
-		
-	    @GetMapping(value = "/kakao")
-	    public void kakaoOauthRedirect(@RequestParam String code) 
+	    @PostMapping(value = "/kakao")
+	    public void kakaoOauthRedirect(@RequestParam String code)
 	    {
 	    	System.out.println("카카오 인가코드 : " + code);
 	    }
+	    
+//		@PostMapping("/kakao")
+//	    public ResponseEntity<String> kakaoJson(@RequestBody AccessTokenDto accessToken) 
+//	    {
+//	        System.out.println("Received JSON from frontend: " + accessToken.getAccessToken());
+//	               
+//	        if(accessToken.getAccessToken().equals(null))
+//	        {
+//	        	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("faileds");
+//	        }
+//	        return ResponseEntity.status(HttpStatus.OK).body("success");   
+//	    }
     
-		@PostMapping("/kakao")
-	    public ResponseEntity<String> kakaoJson(@RequestBody AccessTokenDto accessToken) 
-	    {
-	        System.out.println("Received JSON from frontend: " + accessToken.getAccessToken());
-	               
-	        if(accessToken.getAccessToken().equals(null))
-	        {
-	        	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("faileds");
-	        }
-	        return ResponseEntity.status(HttpStatus.OK).body("success");   
-	    }
+
 }
