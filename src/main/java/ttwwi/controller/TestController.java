@@ -10,11 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TestController 
 {
-	@GetMapping("/Ok")
-	public ResponseEntity<String> main()
-	{
-		return ResponseEntity.ok("hello");
-	}
+
 	@GetMapping("/")
 	public ResponseEntity<String> mains()
 	{
