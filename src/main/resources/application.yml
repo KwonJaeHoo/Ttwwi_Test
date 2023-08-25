@@ -4,7 +4,7 @@ server :
 spring :
   datasource :
     driver-class-name : com.mysql.cj.jdbc.Driver #mySQL을 사용
-    url : jdbc:mysql://43.202.39.197//TtwwiTest?createDatabaseIfNotExist=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url : jdbc:mysql://43.202.39.197/TtwwiTest?createDatabaseIfNotExist=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username : root #db 계정
     password : wognghrn6974! # db 비밀번호
     
