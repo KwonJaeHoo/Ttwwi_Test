@@ -4,7 +4,7 @@ server :
 spring :
   datasource :
     driver-class-name : com.mysql.cj.jdbc.Driver #mySQL을 사용
-    url : jdbc:mysql://localhost:3306/TtwwiTest?createDatabaseIfNotExist=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url : jdbc:mysql://43.202.39.197//TtwwiTest?createDatabaseIfNotExist=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username : root #db 계정
     password : wognghrn6974! # db 비밀번호
     
@@ -26,7 +26,7 @@ spring :
             client-id : 70a91522183e7b2690abffdcdcecb000 
             client-secret : VvQQDt3uScfsqBdt70FUXILCQhG1btW8
             client-authentication-method : POST
-            redirectUri : http://localhost:8000/login/oauth2/code/kakao
+#            redirectUri : http://localhost:8000/login/oauth2/code/kakao
             scope : profile_nickname, profile_image, account_email
             authorization-grant-type : authorization_code
             

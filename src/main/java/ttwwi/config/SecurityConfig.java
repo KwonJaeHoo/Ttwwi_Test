@@ -13,10 +13,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import lombok.RequiredArgsConstructor;
 import ttwwi.jwt.JwtFilter;
 import ttwwi.jwt.JwtTokenProvider;
-import ttwwi.oauth2.OAuth2AuthenticationFailureHandler;
-import ttwwi.oauth2.OAuth2AuthenticationSuccessHandler;
-import ttwwi.repository.CookieAuthorizationRequestRepository;
-import ttwwi.service.CustomOAuth2UserService;
+//import ttwwi.oauth2.OAuth2AuthenticationFailureHandler;
+//import ttwwi.oauth2.OAuth2AuthenticationSuccessHandler;
+//import ttwwi.repository.CookieAuthorizationRequestRepository;
+//import ttwwi.service.CustomOAuth2UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -26,10 +26,10 @@ public class SecurityConfig implements WebMvcConfigurer
     private final long MAX_AGE_SECS = 3600;
     
 	private final JwtTokenProvider jwtTokenProvider;
-    private final CustomOAuth2UserService customOAuth2UserService;
-    private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
-    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
-    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+//    private final CustomOAuth2UserService customOAuth2UserService;
+//    private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
+//    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+//    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
     
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception 
@@ -47,22 +47,22 @@ public class SecurityConfig implements WebMvcConfigurer
             	.antMatchers("/**", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
                 .anyRequest().authenticated();
 
-    	httpSecurity
-    			.oauth2Login()
-                .authorizationEndpoint().baseUri("/oauth2/authorize")
-                .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()
-                .redirectionEndpoint().baseUri("/login/oauth2/code/*").and()
-                
-                .userInfoEndpoint().userService(customOAuth2UserService).and()
-                
-                .successHandler(oAuth2AuthenticationSuccessHandler)
-                .failureHandler(oAuth2AuthenticationFailureHandler);							
-
-    	httpSecurity
-    			.logout()
-                .clearAuthentication(true)
-                .deleteCookies("JSESSIONID");
-    	
+//    	httpSecurity
+//    			.oauth2Login()
+//                .authorizationEndpoint().baseUri("/oauth2/authorize")
+//                .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()
+//                .redirectionEndpoint().baseUri("/login/oauth2/code/*").and()
+//                
+//                .userInfoEndpoint().userService(customOAuth2UserService).and()
+//                
+//                .successHandler(oAuth2AuthenticationSuccessHandler)
+//                .failureHandler(oAuth2AuthenticationFailureHandler);							
+//
+//    	httpSecurity
+//    			.logout()
+//                .clearAuthentication(true)
+//                .deleteCookies("JSESSIONID");
+//    	
 
         httpSecurity
         		.addFilterBefore(new JwtFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
