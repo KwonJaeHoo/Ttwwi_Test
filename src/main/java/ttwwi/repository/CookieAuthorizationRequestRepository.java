@@ -49,8 +49,6 @@ public class CookieAuthorizationRequestRepository implements AuthorizationReques
 
         if (StringUtils.isNotBlank(redirectUriAfterLogin)) 
         {
-        	System.out.println(OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME);
-        	System.out.println(REDIRECT_URI_PARAM_COOKIE_NAME);
             CookieUtil.addCookie(response, REDIRECT_URI_PARAM_COOKIE_NAME, redirectUriAfterLogin, COOKIE_EXPIRE_SECONDS);
         }
     }
