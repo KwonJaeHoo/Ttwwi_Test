@@ -1,6 +1,7 @@
 package ttwwi.controller;
 
 import lombok.RequiredArgsConstructor;
+import okhttp3.OkHttpClient;
 import ttwwi.dto.AccessTokenDto;
 
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class UserController 
 {	
-
+		private OkHttpClient client;
+		
+		
 	    @GetMapping(value = "/kakao")
 	    public void kakaoOauthRedirect(@RequestParam String code) 
 	    {

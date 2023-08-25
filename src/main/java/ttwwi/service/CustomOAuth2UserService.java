@@ -30,6 +30,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException 
     {
+    	System.out.println("3: " + oAuth2UserRequest.toString());
         OAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = oAuth2UserService.loadUser(oAuth2UserRequest);
 
@@ -38,6 +39,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
     protected OAuth2User processOAuth2User(OAuth2UserRequest oAuth2UserRequest, OAuth2User oAuth2User) 
     {
+    	System.out.println("4: " + oAuth2User.toString());
+    	System.out.println("5: " + oAuth2UserRequest.toString());
+    	
         //OAuth2 로그인 플랫폼 구분
         AuthProvider authProvider = AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId().toUpperCase());
         OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(authProvider, oAuth2User.getAttributes());
