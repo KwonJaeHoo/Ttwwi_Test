@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Optional;
-
+//CookieOAuth2AuthorizationRequestRepository에서 사용될 쿠키의 기능 클래스
 public class CookieUtil
 {
     public static Optional<Cookie> getCookie(HttpServletRequest request, String name) 

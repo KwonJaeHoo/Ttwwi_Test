@@ -5,21 +5,23 @@ import ttwwi.enums.AuthProvider;
 import ttwwi.enums.Role;
 import ttwwi.oauth2.OAuth2UserInfo;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "members")
 @Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Member
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long memberId;
 
     @NotNull
     private String email;
@@ -37,8 +39,8 @@ public class Member
     
     private String imageUrl;
     
-    private String password;
-
+//    @OneToMany(mappedBy = "contributor")
+//    private List<Trip> trips = new ArrayList<>();
     
     
     public Member update(OAuth2UserInfo oAuth2UserInfo) 
@@ -48,5 +50,5 @@ public class Member
         this.imageUrl = oAuth2UserInfo.getImageUrl();
 
         return this;
-    }
+    } 
 }

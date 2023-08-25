@@ -35,10 +35,10 @@ public class UserPrincipal implements OAuth2User, UserDetails
         this.authorities = authorities;
     }
 
-    public static UserPrincipal create(Member userEntity, Map<String, Object> attributes) 
+    public static UserPrincipal create(Member member, Map<String, Object> attributes) 
     {
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
-        UserPrincipal userPrincipal = new UserPrincipal(userEntity.getId(), userEntity.getEmail(), authorities);
+        UserPrincipal userPrincipal = new UserPrincipal(member.getMemberId(), member.getEmail(), authorities);
         userPrincipal.setAttributes(attributes);
         return userPrincipal;
     }

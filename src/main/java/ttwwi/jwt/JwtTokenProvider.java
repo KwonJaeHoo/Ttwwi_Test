@@ -34,8 +34,8 @@ import ttwwi.dto.UserResponseDto;
 @Component //개발자가 직접 작성한 Class를 Bean으로 등록하기 위한 Annotation
 public class JwtTokenProvider 
 {
-
-    private static final String AUTHORIZATION_HEADER = "Authorization";
+	
+	private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "Bearer";
     private static final String TYPE_ACCESS = "access";
