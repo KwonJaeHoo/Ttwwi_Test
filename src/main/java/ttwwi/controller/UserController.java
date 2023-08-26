@@ -27,14 +27,13 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping(value = "/login/oauth2/code")
 @RequiredArgsConstructor
-
 public class UserController 
 {	
 
 	@PostMapping("/kakao")
-	public ResponseEntity<String> kakaoJson(@RequestParam String code) 
+	public ResponseEntity<String> kakaoJson(@RequestBody AuthorizedCodeDto code) 
 	{
-		System.out.println("인가코드 : " + code);
+		System.out.println("인가코드 : " + code.getAuthorizationToken());
 		
 		// 카카오에 POST방식으로 key=value 데이터를 요청함. RestTemplate를 사용하면 요청을 편하게 할 수 있다.
 	  	RestTemplate restTemplate = new RestTemplate();
@@ -47,7 +46,7 @@ public class UserController
 	       	params.add("grant_type", "authorization_code");
 	       	params.add("client_id", "{client_id}");
 	       	params.add("redirect_uri", "kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth");
-	       	params.add("code", code);
+	       	params.add("code", code.getAuthorizationToken());
 	       	params.add("client_secret", "{secret_code}");
 
 	       // HttpHeader와 HttpBody를 HttpEntity에 담기 (why? rt.exchange에서 HttpEntity객체를 받게 되어있다.)

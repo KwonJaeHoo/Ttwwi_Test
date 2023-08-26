@@ -8,6 +8,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class AuthorizedCodeDto 
 {
-    private String grantType;
+    private String authorizationToken;
 
 }
