@@ -23,13 +23,25 @@ import ttwwi.jwt.JwtTokenProvider;
 @RequiredArgsConstructor
 public class SecurityConfig implements WebMvcConfigurer
 {
-    private final long MAX_AGE_SECS = 3600;
-    
+    private final long MAX_AGE_SECS = 3600;    
 	private final JwtTokenProvider jwtTokenProvider;
+	
 //    private final CustomOAuth2UserService customOAuth2UserService;
 //    private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
 //    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 //    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+    
+    @Override
+    public void addCorsMappings(CorsRegistry corsRegistry) 
+    {
+    	corsRegistry
+        		.addMapping("/**")
+                .allowedOrigins("/*")
+                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(MAX_AGE_SECS);
+    }
     
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception 
@@ -47,22 +59,22 @@ public class SecurityConfig implements WebMvcConfigurer
             	.antMatchers("/**", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
                 .anyRequest().authenticated();
 
-//    	httpSecurity
-//    			.oauth2Login()
-//                .authorizationEndpoint().baseUri("/oauth2/authorize")
+    	httpSecurity
+    			.oauth2Login()
+                .authorizationEndpoint().baseUri("/oauth2/authorize");
 //                .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()
-//                .redirectionEndpoint().baseUri("/login/oauth2/code/*").and()
+//                .redirectionEndpoint().baseUri("/logi/oauth2/code/*").and()
 //                
 //                .userInfoEndpoint().userService(customOAuth2UserService).and()
 //                
 //                .successHandler(oAuth2AuthenticationSuccessHandler)
 //                .failureHandler(oAuth2AuthenticationFailureHandler);							
 //
-//    	httpSecurity
-//    			.logout()
-//                .clearAuthentication(true)
-//                .deleteCookies("JSESSIONID");
-//    	
+    	httpSecurity
+    			.logout()
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID");
+    	
 
         httpSecurity
         		.addFilterBefore(new JwtFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
@@ -71,15 +83,5 @@ public class SecurityConfig implements WebMvcConfigurer
         		.build();
     }
     
-    @Override
-    public void addCorsMappings(CorsRegistry corsRegistry) 
-    {
-    	corsRegistry
-        		.addMapping("/**")
-                .allowedOrigins("/*")
-                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true)
-                .maxAge(MAX_AGE_SECS);
-    }
+
 }
