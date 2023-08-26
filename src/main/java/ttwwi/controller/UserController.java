@@ -44,10 +44,10 @@ public class UserController
 	       // HttpBody 오브젝트 생성
 	       MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 	       	params.add("grant_type", "authorization_code");
-	       	params.add("client_id", "{client_id}");
+	       	params.add("client_id", "70a91522183e7b2690abffdcdcecb000");
 	       	params.add("redirect_uri", "kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth");
 	       	params.add("code", code.getAuthorizationToken());
-	       	params.add("client_secret", "{secret_code}");
+	       
 
 	       // HttpHeader와 HttpBody를 HttpEntity에 담기 (why? rt.exchange에서 HttpEntity객체를 받게 되어있다.)
 	       HttpEntity<MultiValueMap<String, String>> kakaoCodeRequest = new HttpEntity<>(params, kakaoCodeHeaders);
