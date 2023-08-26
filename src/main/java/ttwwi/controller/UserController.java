@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import ttwwi.dto.AuthorizedCodeDto;
 
 import java.io.IOException;
 
@@ -11,6 +12,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -72,39 +74,12 @@ public class UserController
 		OkHttpClient client = new OkHttpClient();
 		
 		// Android의 Redirect URI
-        String redirectUri = "kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth";
+	    String redirectUri = "kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth";
+	    String responseBody = "{\"redirect_uri\":\"" + redirectUri + "\"}";
+	        
+        return ResponseEntity.status(HttpStatus.OK)
+                             .contentType(MediaType.APPLICATION_JSON)
+                             .body(responseBody);
 
-     // 응답할 내용
-        String responseBody = "인가코드 받기";
-
-        // 요청 만들기
-        Request request = new Request.Builder()
-                .url(redirectUri)
-                .build();
-      try {
-          // 요청 실행
-          Response responseAndroid = client.newCall(request).execute();
-
-          // 응답이 성공적인지 확인 (상태 코드 200)
-          if (responseAndroid.isSuccessful()) 
-          {
-              // 성공 응답 처리
-              return new ResponseEntity<>(responseBody, HttpStatus.OK);
-          } 
-          else 
-          {
-              // 오류 응답 처리
-              return new ResponseEntity<>(responseBody, HttpStatus.INTERNAL_SERVER_ERROR);
-          }
-      } 
-      catch (IOException e) 
-      {
-          e.printStackTrace();
-          // 예외 처리
-          return new ResponseEntity<>(responseBody, HttpStatus.INTERNAL_SERVER_ERROR);
-      
-
-       
-      }	
 	}
 }
