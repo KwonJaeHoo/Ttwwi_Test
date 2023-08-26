@@ -54,6 +54,7 @@ public class UserController
 
 	       // HTTP 요청 - POST방식 - response 응답 받기
 	       ResponseEntity<String> response = restTemplate.exchange("https://kauth.kakao.com/oauth/token",  HttpMethod.POST, kakaoCodeRequest, String.class);
+	       System.out.println(response);
 
 		//member를 body로 지정해서, member 객체를 JSON으로 변환한다.
 	    return response;
