@@ -15,7 +15,7 @@ import ttwwi.jwt.JwtFilter;
 import ttwwi.jwt.JwtTokenProvider;
 //import ttwwi.oauth2.OAuth2AuthenticationFailureHandler;
 //import ttwwi.oauth2.OAuth2AuthenticationSuccessHandler;
-import ttwwi.repository.CookieAuthorizationRequestRepository;
+//import ttwwi.repository.CookieAuthorizationRequestRepository;
 //import ttwwi.service.CustomOAuth2UserService;
 
 @Configuration
@@ -27,7 +27,7 @@ public class SecurityConfig implements WebMvcConfigurer
 	private final JwtTokenProvider jwtTokenProvider;
 	
 //    private final CustomOAuth2UserService customOAuth2UserService;
-    private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
+//    private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
 //    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 //    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
     
@@ -82,6 +82,4 @@ public class SecurityConfig implements WebMvcConfigurer
         return httpSecurity
         		.build();
     }
-    
-
 }
