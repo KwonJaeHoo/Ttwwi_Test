@@ -61,8 +61,8 @@ public class SecurityConfig implements WebMvcConfigurer
 
     	httpSecurity
     			.oauth2Login()
-                .authorizationEndpoint().baseUri("/oauth2/authorize")
-                .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()
+//                .authorizationEndpoint().baseUri("/oauth2/authorize");
+//                .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()
                 .redirectionEndpoint().baseUri("kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth").and();
 //                
 //                .userInfoEndpoint().userService(customOAuth2UserService).and()
