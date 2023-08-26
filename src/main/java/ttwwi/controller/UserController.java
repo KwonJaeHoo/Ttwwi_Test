@@ -31,7 +31,7 @@ public class UserController
 {	
 
 	@PostMapping("/kakao")
-	public ResponseEntity<String> kakaoJson(AuthorizedCodeDto authorizationCode) 
+	public ResponseEntity<String> kakaoJson(@RequestBody AuthorizedCodeDto authorizationCode) 
 	{
 		System.out.println("인가코드 : " + authorizationCode.getAuthorizationCode());
 		
@@ -56,20 +56,11 @@ public class UserController
 	    // HTTP 요청 - POST방식 - response 응답 받기
 	    ResponseEntity<String> response = restTemplate.exchange("https://kauth.kakao.com/oauth/token",  HttpMethod.POST, kakaoCodeRequest, String.class);
 	      System.out.println("1");
-		//그대로반환
 	    return response;
 	}
 	
-
-	@PostMapping("/ok")
-	public void kakaook(@RequestBody String accessToken) 
-	{
-		System.out.println("인가코드 : " + accessToken);
-
-	}
 	
-
-		
+	
 
 //	       HttpHeaders kakaoTokenHeaders = new HttpHeaders();
 //	       kakaoTokenHeaders.add("Authorization", "Bearer " + kakaoOauthParams.getAccess_token());
