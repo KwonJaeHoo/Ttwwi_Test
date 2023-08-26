@@ -47,6 +47,7 @@ public class UserController
 	       	params.add("client_id", "70a91522183e7b2690abffdcdcecb000");
 	       	params.add("redirect_uri", "kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth");
 	       	params.add("code", authorizationCode.getAuthorizationCode());
+	       	params.add("client_secret", "VvQQDt3uScfsqBdt70FUXILCQhG1btW8");
 	       
 
 	       // HttpHeader와 HttpBody를 HttpEntity에 담기 (why? rt.exchange에서 HttpEntity객체를 받게 되어있다.)
