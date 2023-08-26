@@ -37,10 +37,17 @@ public class UserController
 //	}
 	
 	@PostMapping("/kakao")
-	public ResponseEntity<String> kakaoJson(@RequestBody String code) 
+	public ResponseEntity<Object> kakaoJson(@RequestBody AuthorizedCodeDto authorizedCode) 
 	{
-		System.out.println("인가코드 : " + code);
+		System.out.println("인가코드 : " + authorizedCode);
 
+		//member를 body로 지정해서, member 객체를 JSON으로 변환한다.
+	    return ResponseEntity.status(HttpStatus.OK).body(authorizedCode);
+	}
+	
+	@PostMapping("aa")
+	public ResponseEntity<String> kakao(@RequestBody String code)
+	{
 		// 카카오에 POST방식으로 key=value 데이터를 요청함. RestTemplate를 사용하면 요청을 편하게 할 수 있다.
 	  	RestTemplate restTemplate = new RestTemplate();
 	  	   // HttpHeader 오브젝트 생성
@@ -60,26 +67,13 @@ public class UserController
 
 	       // HTTP 요청 - POST방식 - response 응답 받기
 	       ResponseEntity<String> response = restTemplate.exchange("https://kauth.kakao.com/oauth/token",  HttpMethod.POST, kakaoCodeRequest, String.class);
-    
-//
+	       
+	       	return null;
 //	       HttpHeaders kakaoTokenHeaders = new HttpHeaders();
 //	       kakaoTokenHeaders.add("Authorization", "Bearer " + kakaoOauthParams.getAccess_token());
 //	       kakaoTokenHeaders.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 //
 //	       HttpEntity<HttpHeaders> kakaoTokenRequest = new HttpEntity<>(kakaoTokenHeaders);
 //	       ResponseEntity<String> profileResponse = restTemplate.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST, kakaoTokenRequest, String.class);
-	    
-	  	
-		// OkHttpClient 인스턴스 생성
-		OkHttpClient client = new OkHttpClient();
-		
-		// Android의 Redirect URI
-	    String redirectUri = "kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth";
-	    String responseBody = "{\"redirect_uri\":\"" + redirectUri + "\"}";
-	        
-        return ResponseEntity.status(HttpStatus.OK)
-                             .contentType(MediaType.APPLICATION_JSON)
-                             .body(responseBody);
-
 	}
 }
